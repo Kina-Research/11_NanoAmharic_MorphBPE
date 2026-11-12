@@ -1,0 +1,51 @@
+# ============================================================
+# system.yaml — Hardware and environment configuration
+# ============================================================
+
+project:
+  name: "NanoAmharic-MorphBPE"
+  version: "0.1.0"
+  description: "Morphology-Constrained Tokenization and CPU-Trainable Decoder LM for Amharic"
+
+hardware:
+  cpu:
+    architecture: "Intel64 (x86_64)"
+    family: "Intel Family 6 Model 142 (Whiskey Lake / Kaby Lake Refresh)"
+    physical_cores: 4
+    logical_cores: 8
+    max_clock_mhz: 1992
+    detected_clock_mhz: 1792
+  memory:
+    total_gb: 17.0
+    available_gb_at_setup: 2.2
+    training_target_max_gb: 10.0   # Reserve for OS + other processes
+  disk:
+    drive: "D:"
+    free_gb: 131.5
+    total_gb: 314.6
+  gpu:
+    present: false
+    cuda_available: false
+    gpu_dependencies_prohibited: true
+
+environment:
+  os: "Windows-11-10.0.26200-SP0"
+  python_version: "3.13.0"
+  python_executable: "C:/Program Files/Python313/python.exe"
+  pytorch_version: "2.15.0+cpu"
+  pytorch_threads: 4
+
+constraints:
+  max_trainable_parameters: 50_000_000
+  target_training_hours: 48
+  cuda_prohibited: true
+  cloud_api_prohibited: true
+  gpu_libraries_prohibited: true
+
+paths:
+  project_root: "d:/AMUPHD2015/Papers/nanoamharic-morphbpe"
+  data_root: "data/"
+  model_checkpoints: "eval/results/"
+  logs: "eval/reports/"
+  vendor: "vendor/"
+

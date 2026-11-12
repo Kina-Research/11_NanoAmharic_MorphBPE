@@ -1,0 +1,73 @@
+# ============================================================
+# tokenizer.yaml — MorphBPE tokenizer configuration
+# ============================================================
+
+tokenizer:
+  algorithm: "MorphBPE"
+  base_algorithm: "BPE"
+
+  # Vocabulary experiments (Phase 3)
+  vocab_sizes: [2000, 4000, 8000, 12000]
+  default_vocab_size: 4000
+
+  # Morphological boundary penalty
+  lambda_values: [0.0, 0.25, 0.50, 0.75, 1.0]
+  default_lambda: 0.50
+
+  # Input encoding
+  character_coverage: 1.0
+  byte_fallback: true        # Guarantee OOV coverage via UTF-8 bytes
+  add_prefix_space: false
+  add_bos_token: true
+  add_eos_token: true
+
+  # Special tokens
+  special_tokens:
+    pad: "<pad>"
+    unk: "<unk>"
+    bos: "<bos>"
+    eos: "<eos>"
+    story_start: "<story_start>"
+    story_end: "<story_end>"
+
+  # Morphological rules (candidates — validated in Phase 3)
+  amharic_prefixes:
+    - "ያ"   # ya- (relativizer)
+    - "የ"   # yä- (genitive/relative)
+    - "ወ"   # wä- (coordinating)
+    - "በ"   # bä- (locative/instrumental)
+    - "ለ"   # lä- (dative/purposive)
+    - "እ"   # ə- (various)
+    - "ከ"   # kä- (ablative/comitative)
+    - "ስ"   # sə- (causative prefix variant)
+    - "አል"  # al- (negative verb prefix)
+    - "እየ"  # əyä- (continuous aspect)
+    - "ስለ"  # səlä- (causal)
+    - "እንደ" # əndä- (comparative)
+
+  amharic_suffixes:
+    - "ው"   # -uw (3ms object)
+    - "ዋ"   # -wa (3fs)
+    - "ዎች"  # -wočč (plural)
+    - "ኛ"   # -ňňa (diminutive/native)
+    - "ተኛ"  # -täňňa (ordinal)
+    - "ነት"  # -nät (abstract noun)
+    - "ኦች"  # -očč (plural variant)
+    - "ኤ"   # -e (1s possessive)
+    - "ህ"   # -h (2ms possessive)
+    - "ሽ"   # -šš (2fs possessive)
+    - "ኡ"   # -u (3ms definite)
+    - "አቸው" # -atšäw (3pl object)
+    - "ም"   # -əm (additive)
+    - "ና"   # -nna (conjunction)
+
+  # Deterministic tie-breaking
+  tie_breaking: "alphabetical"  # When scores are equal, sort alphabetically
+
+  # Training data
+  training_corpus: "data/processed/train.jsonl"
+
+  # Output paths
+  output_dir: "eval/results/tokenizer/"
+  model_prefix: "morphbpe"
+

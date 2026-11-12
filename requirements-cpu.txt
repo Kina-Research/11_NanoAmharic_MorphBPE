@@ -1,0 +1,31 @@
+# ============================================================
+# requirements-cpu.txt — NanoAmharic-MorphBPE
+# MINIMAL CPU-ONLY requirements for core research pipeline
+# (No cloud APIs, no GPU dependencies, no heavy optional extras)
+# ============================================================
+
+# Core
+torch==2.15.0
+numpy==2.2.0
+transformers==4.57.0
+datasets==2.21.0
+tokenizers==0.22.1
+sentencepiece==0.2.2
+
+# Utilities
+requests==2.32.5
+tqdm==4.67.1
+regex==2.5.162
+psutil==7.1.0
+pyyaml>=6.0
+jsonlines>=4.0.0
+
+# Deduplication
+datasketch>=1.6.5
+
+# Text metrics
+textstat>=0.7.3
+
+# Testing
+pytest>=8.3.0
+

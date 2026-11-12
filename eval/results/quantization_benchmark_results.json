@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-11-12 12:44:39",
+  "model_architecture": "NanoAmharic-Prototype (5.75M)",
+  "quantization_type": "torch.ao.quantization.quantize_dynamic (torch.qint8)",
+  "checkpoint_comparison": {
+    "fp32_size_mb": 65.82,
+    "int8_size_mb": 9.44,
+    "compression_ratio": 6.97,
+    "disk_savings_pct": 85.65
+  },
+  "performance_comparison": {
+    "fp32_throughput_tok_per_sec": 97.7,
+    "fp32_latency_ms_per_token": 9.96,
+    "int8_throughput_tok_per_sec": 51.6,
+    "int8_latency_ms_per_token": 19.37,
+    "throughput_speedup_ratio": 0.53,
+    "latency_reduction_pct": -94.48
+  },
+  "sample_fidelity_comparison": [
+    {
+      "prompt": "በጥንት ዘመን አንድ ንጉሥ",
+      "fp32_continuation": "የዋፍ በግብ አቀቀስ ጋር ሲረቅ ውስጥ መጣላ ለበወነ",
+      "int8_continuation": "አወደም ላይ በተሰጠ ይገ ማስ የተስተብ አነቃ ነው። \"ከ"
+    },
+    {
+      "prompt": "የአዲስ አበባ ከተማ",
+      "fp32_continuation": "ጋር ነው ነው? \nበጣም ጥሩ እና መቼ?",
+      "int8_continuation": "ነው። እንዴት ይመስልዎታል? \nአዎን፣ በየቀኑ አላደርግም። በኋላ ምን ይወዳሉ? \nተጠያቂ፡ ሂሳብ እና እንደምን አመሰግናለሁ።"
+    },
+    {
+      "prompt": "ትንሽ ልጅቷ በጫካ ውስጥ",
+      "fp32_continuation": "የነማ የጠቅላይ እንደ አመስታ ከገቀብ ይሰታና ለመሰክ የ",
+      "int8_continuation": "የከወም ይነራ ከየገቱ በግር ያፈሉ ላይ ለከላፍ"
+    },
+    {
+      "prompt": "ሰላም እንደምን አለህ",
+      "fp32_continuation": "ነው?",
+      "int8_continuation": "እንዴ? \nአዎን፣ እወዳለሁ። በተለይ በተለይ ከወጥ ይመስልዎታል? \nመልስ፡ ሂሳብ እና ጥሩ ነው። እርግጠኛ ነዎት?"
+    },
+    {
+      "prompt": "ኢትዮጵያ ታሪካዊ ሀገር ናት",
+      "fp32_continuation": "እደቀ የገባ ነው ወደ መጨሳ አሸብ ላይ ግን ይስተ የተነማ",
+      "int8_continuation": "ም እራፍ የገባ ውስጥ በመቀጣ በነበረው ላይ የደሳበት የመስረስ"
+    }
+  ]
+}

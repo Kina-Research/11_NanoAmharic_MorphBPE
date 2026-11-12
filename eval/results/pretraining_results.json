@@ -1,0 +1,70 @@
+[
+  {
+    "experiment_name": "baseline_standard_bpe_v4k",
+    "total_steps": 500,
+    "final_epoch": 0,
+    "final_train_loss": 3.2755126357078552,
+    "best_val_loss": 3.5533,
+    "best_val_ppl": 34.9287,
+    "final_val_loss": 3.5533,
+    "final_val_ppl": 34.9287,
+    "total_tokens_processed": 1024000,
+    "elapsed_seconds": 880.7025363445282,
+    "vocab_size": 4000,
+    "trainable_parameters": 5745920,
+    "seq_len": 128,
+    "batch_size": 4,
+    "grad_accum": 4,
+    "effective_batch_size": 16,
+    "train_tokens_total": 1771701,
+    "val_tokens_total": 108816,
+    "sample_generations": [
+      {
+        "prompt": "ኢትዮጵያ ታሪካዊ",
+        "generated": "ኢትዮጵያ ታሪካዊ ላይ የተጠራ ወደ የዘስ አ የሸር በሰቀ የሳ"
+      },
+      {
+        "prompt": "የአዲስ አበባ ከተማ",
+        "generated": "የአዲስ አበባ ከተማ ወደ ነው። የት እና መቼ?"
+      },
+      {
+        "prompt": "በጥንት ዘመን አንድ ንጉሥ",
+        "generated": "በጥንት ዘመን አንድ ንጉሥ በበፈድ ላይ የተገል የዘክ ከሳን ከጠረ ከ"
+      }
+    ]
+  },
+  {
+    "experiment_name": "experimental_morphbpe_v4k",
+    "total_steps": 500,
+    "final_epoch": 0,
+    "final_train_loss": 3.631617486476898,
+    "best_val_loss": 3.5118,
+    "best_val_ppl": 33.5081,
+    "final_val_loss": 3.5118,
+    "final_val_ppl": 33.5081,
+    "total_tokens_processed": 1024000,
+    "elapsed_seconds": 863.6532142162323,
+    "vocab_size": 4000,
+    "trainable_parameters": 5745920,
+    "seq_len": 128,
+    "batch_size": 4,
+    "grad_accum": 4,
+    "effective_batch_size": 16,
+    "train_tokens_total": 1780800,
+    "val_tokens_total": 109305,
+    "sample_generations": [
+      {
+        "prompt": "ኢትዮጵያ ታሪካዊ",
+        "generated": "ኢትዮጵያ ታሪካዊ ውስጥ ላይ በበስ የወስ አረ የበድ የገቀ ይ"
+      },
+      {
+        "prompt": "የአዲስ አበባ ከተማ",
+        "generated": "የአዲስ አበባ ከተማ ነገር አለ? \nተጠያቂ፡ ዛሬ ምን ይሆናል? \nመልስ፡ በጣም ጥሩ ነው። እንዴት "
+      },
+      {
+        "prompt": "በጥንት ዘመን አንድ ንጉሥ",
+        "generated": "በጥንት ዘመን አንድ ንጉሥ ከላይ ያጣታ የወራም መሸላ ያፈክ ከየዋ "
+      }
+    ]
+  }
+]

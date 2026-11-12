@@ -1,0 +1,529 @@
+/* ==========================================================================
+   NanoAmharic-MorphBPE Web UI Stylesheet
+   Modern, Dark-Themed, Responsive, Ethiopic-Optimized Typography
+   ========================================================================== */
+
+:root {
+    --bg-main: #0b0f19;
+    --bg-card: #131b2e;
+    --bg-card-hover: #19233c;
+    --bg-input: #090d16;
+    --border: #23304a;
+    --border-focus: #38bdf8;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --accent: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --accent-glow: rgba(56, 189, 248, 0.25);
+    
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --purple: #8b5cf6;
+    
+    --chat-user: #0369a1;
+    --chat-bot: #1e293b;
+    
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    
+    --font-amharic: 'Nyala', 'Abyssinica SIL', 'Kefa', 'Segoe UI Historic', system-ui, -apple-system, sans-serif;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-amharic);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container */
+.app-container {
+    max-width: 1100px;
+    width: 95%;
+    margin: 24px auto;
+    flex: 1;
+}
+
+/* Header */
+.app-header {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px 32px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.brand-title {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-title .logo-glow {
+    color: var(--accent);
+    text-shadow: 0 0 16px var(--accent-glow);
+}
+
+.brand-subtitle {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+.header-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.3px;
+}
+
+.badge-blue { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+.badge-green { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+.badge-purple { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
+
+/* Navigation Tabs */
+.tabs-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.tab-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+    border-color: var(--border-focus);
+}
+
+.tab-btn.active {
+    background: var(--accent);
+    color: #0b0f19;
+    border-color: var(--accent);
+    box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+/* Main Grid Layout */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 310px;
+    gap: 24px;
+}
+
+@media (max-width: 900px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Card Container */
+.content-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow);
+}
+
+.card-header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Inputs and Forms */
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+input[type="text"], textarea, select {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1.05rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* Preset Chips */
+.presets-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.chip-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    padding: 5px 12px;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.chip-btn:hover {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Action Buttons */
+.btn-primary {
+    background: var(--accent);
+    color: #0b0f19;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+}
+
+/* Output Display Box */
+.output-container {
+    margin-top: 24px;
+}
+
+.output-box {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    min-height: 140px;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    color: #e2e8f0;
+    position: relative;
+}
+
+.output-box.loading::after {
+    content: "⏱ እየተዘጋጀ ነው...";
+    display: block;
+    color: var(--accent);
+    font-size: 0.95rem;
+    margin-top: 10px;
+}
+
+.telemetry-bar {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.telemetry-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.telemetry-val {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Chat Tab Layout */
+.chat-window {
+    height: 400px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.chat-bubble {
+    max-width: 82%;
+    padding: 12px 18px;
+    border-radius: 14px;
+    font-size: 1.08rem;
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+.chat-bubble.user {
+    background: var(--chat-user);
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-bubble.bot {
+    background: var(--chat-bot);
+    color: var(--text-primary);
+    align-self: flex-start;
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+}
+
+.chat-input-row {
+    display: flex;
+    gap: 10px;
+}
+
+/* Tokenizer Visualizer Lab */
+.token-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.token-row {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+}
+
+.token-row-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tokens-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.token-chip {
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 1.05rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid;
+}
+
+.token-chip.morph-chip {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.4);
+    color: #7dd3fc;
+}
+
+.token-chip.std-chip {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+}
+
+.token-chip.prefix-chip {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.4);
+    color: #6ee7b7;
+}
+
+.token-chip.root-chip {
+    background: rgba(139, 92, 246, 0.15);
+    border-color: rgba(139, 92, 246, 0.4);
+    color: #c4b5fd;
+}
+
+.token-chip.suffix-chip {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #fcd34d;
+}
+
+/* Sidebar Settings Panel */
+.sidebar-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+}
+
+.setting-item {
+    margin-bottom: 20px;
+}
+
+.setting-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.setting-val {
+    color: var(--accent);
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+/* Dashboard Tables */
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 14px;
+}
+
+table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+table.data-table th, table.data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+table.data-table th {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+table.data-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+}

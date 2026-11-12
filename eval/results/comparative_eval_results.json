@@ -1,0 +1,145 @@
+{
+  "timestamp": "2026-11-12 12:37:38",
+  "evaluation_settings": {
+    "test_documents": 500,
+    "diagnostic_prompts": 40,
+    "decoding": {
+      "temperature": 0.7,
+      "top_k": 40,
+      "top_p": 0.9,
+      "repetition_penalty": 1.1
+    }
+  },
+  "language_model_metrics": {
+    "baseline_standard_bpe_v4k": {
+      "documents_evaluated": 500,
+      "total_tokens": 30787,
+      "total_words": 19619,
+      "total_chars": 100380,
+      "token_cross_entropy": 2.8873,
+      "token_perplexity": 17.95,
+      "word_perplexity": 92.84,
+      "bits_per_character": 1.2776,
+      "character_perplexity": 2.42
+    },
+    "experimental_morphbpe_v4k": {
+      "documents_evaluated": 500,
+      "total_tokens": 30848,
+      "total_words": 19619,
+      "total_chars": 100380,
+      "token_cross_entropy": 2.8565,
+      "token_perplexity": 17.4,
+      "word_perplexity": 89.25,
+      "bits_per_character": 1.2664,
+      "character_perplexity": 2.41
+    },
+    "delta_word_ppl": -3.59,
+    "delta_bpc": -0.0112,
+    "statistical_significance": {
+      "n_samples": 500,
+      "observed_mean_difference": -0.01105,
+      "ci_lower": -0.01659,
+      "ci_upper": -0.00551,
+      "confidence_level": 0.95,
+      "bootstrap_p_value": 0.0,
+      "t_statistic": -3.9305,
+      "is_statistically_significant": true
+    }
+  },
+  "generation_diversity_metrics": {
+    "baseline_standard_bpe_v4k": {
+      "distinct_1": 0.6155,
+      "distinct_2": 0.8832,
+      "repetition_3gram_rate": 0.0022,
+      "average_length_words": 13.2,
+      "total_generated_words": 528
+    },
+    "experimental_morphbpe_v4k": {
+      "distinct_1": 0.5665,
+      "distinct_2": 0.8291,
+      "repetition_3gram_rate": 0.0043,
+      "average_length_words": 13.7,
+      "total_generated_words": 549
+    }
+  },
+  "morphological_quality_metrics": {
+    "baseline_standard_bpe_v4k": {
+      "total_words_audited": 528,
+      "affix_words_identified": 278,
+      "valid_affix_words": 264,
+      "morphological_errors_total": 16,
+      "morphological_error_rate_pct": 3.03,
+      "stem_preservation_score_pct": 94.96,
+      "error_type_breakdown": {
+        "degenerate_stem": 14,
+        "syllable_stutter": 1,
+        "non_ethiopic_character": 1
+      }
+    },
+    "experimental_morphbpe_v4k": {
+      "total_words_audited": 549,
+      "affix_words_identified": 284,
+      "valid_affix_words": 277,
+      "morphological_errors_total": 8,
+      "morphological_error_rate_pct": 1.46,
+      "stem_preservation_score_pct": 97.54,
+      "error_type_breakdown": {
+        "degenerate_stem": 7,
+        "non_ethiopic_character": 1
+      }
+    },
+    "relative_error_reduction_pct": 51.82
+  },
+  "sample_comparisons": [
+    {
+      "prompt": "በጥንት ዘመን አንድ ንጉሥ",
+      "baseline_continuation": "የጠሩ ነበር። ከሞሉ የጠሳ በሙ የተገቀ በመ ወደ ካፈ እና ላይ ለመረ",
+      "morphbpe_continuation": "የደማታ ያሸም ነው ከበጣ መፈዳ የመ ከመ የድ ከሲገ ሲተ"
+    },
+    {
+      "prompt": "ትንሽ ልጅቷ በጫካ ውስጥ",
+      "baseline_continuation": "ከከበ ይስብ ያ ከይ ያጥታ የለባቱ የሚደፈ የቀፍም ላይ ከ",
+      "morphbpe_continuation": "በወጣ አታነ የኢትዮጵያ ላይ የማ የለበዝ ሲሳ ጊዜ አሰላ የሸዳ"
+    },
+    {
+      "prompt": "አንድ አባት ለልጁ",
+      "baseline_continuation": "ተሸድ ለስር \"መ ያወክ የተሳሳ ላይ መጠራ የነስ ተቆ እንደ",
+      "morphbpe_continuation": "እንደ የመስሉ የካ ጊዜ ላይ ወደ በመረ ከመገ ሲረላ ውስጥ የጠታ በመስ"
+    },
+    {
+      "prompt": "ሁለቱ ጓደኞች ጉዞ ጀምሩ",
+      "baseline_continuation": "ላይ መታፈ ለማም ከተላ ይቃላ እና የተጥራ ሰዎች እንደ በሸይ የገ",
+      "morphbpe_continuation": "ያድ ላይ በነጣው የተጠ ማመሉ ያቃ የደረ በዘተ ያቀግ የኢ"
+    },
+    {
+      "prompt": "ምድሪቱ ሲደርቅ",
+      "baseline_continuation": "እና ከደደደር የጋላ ወደ ሰዎች በሸጥ በቀር እንደ ይድግ የሰ የ",
+      "morphbpe_continuation": "ውስጥ በግቀ የሚቀራም ወደ የበድ እንደ ይገካ አጣስ በስታ በካሳ"
+    },
+    {
+      "prompt": "ሰላም እንደምን አለህ",
+      "baseline_continuation": "እንዴ?",
+      "morphbpe_continuation": "ናቸው።"
+    },
+    {
+      "prompt": "ኢትዮጵያ ስለምን ታወቃለች",
+      "baseline_continuation": "፤ ነገር በጠራር ከፈቀራ ላይ የሚሸሰ ውስጥ ወደ የደጥቱ እና ውስጥ ከነ",
+      "morphbpe_continuation": "በስዳት ነው እንደ ተሻላርና ነው። በሥራ ያቀረም አታ የከመና መ"
+    },
+    {
+      "prompt": "አማርኛ ስንት ሰዎች ይናገሩታል",
+      "baseline_continuation": "ከከጠክ ለከስና ተሸል በጋታ \"መጋ የላረም ላይ ከፈ ነው።",
+      "morphbpe_continuation": ""
+    },
+    {
+      "prompt": "የአዲስ አበባ ከተማ",
+      "baseline_continuation": "ከሰው ጊዜ በሰማ የብዙ የዘድ በከሸለም ነው ሲወራ የጥረ ላይ ተ",
+      "morphbpe_continuation": "ነገር አለ? \nመልስ፡ ሙዚየምና ሱቅ ከወጥ ናቸው? \nተጠያቂ፡ አስር ዓመት መቼ?"
+    },
+    {
+      "prompt": "የኢትዮጵያ ታሪክ",
+      "baseline_continuation": "ላይ ነው። \" ወደ ተሰላ እንደ ከያረራ በወል የሙ በቀቶ በገባ እና",
+      "morphbpe_continuation": "ከተማ ያማባና ከበሰረ አዝ ት ሲራገራ ከሰካሩ ላይ በመረጃ ይደ"
+    }
+  ]
+}

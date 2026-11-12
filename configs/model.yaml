@@ -1,0 +1,61 @@
+# ============================================================
+# model.yaml — NanoAmharic architecture configuration
+# ============================================================
+
+model:
+  name: "NanoAmharic"
+  type: "decoder-only-transformer"
+  version: "0.1.0"
+
+  # Prototype (5–15M parameters) — Start here, validate CPU feasibility
+  prototype:
+    vocab_size: 4000           # Set after tokenizer training
+    embedding_dim: 256
+    num_layers: 6
+    num_heads: 8
+    head_dim: 32               # embedding_dim / num_heads
+    ffn_dim: 1024
+    max_seq_len: 512
+    dropout: 0.1
+    tie_embeddings: true       # Input embedding = output projection (weight tying)
+    # Estimated params: ~5–8M
+
+  # Standard (15–25M parameters) — After prototype validation
+  standard:
+    vocab_size: 4000
+    embedding_dim: 384
+    num_layers: 8
+    num_heads: 8
+    head_dim: 48
+    ffn_dim: 1536
+    max_seq_len: 512
+    dropout: 0.1
+    tie_embeddings: true
+    # Estimated params: ~15–20M
+
+  # Large (25–50M parameters) — Only if CPU time budget permits
+  large:
+    vocab_size: 8000
+    embedding_dim: 512
+    num_layers: 12
+    num_heads: 8
+    head_dim: 64
+    ffn_dim: 2048
+    max_seq_len: 1024
+    dropout: 0.1
+    tie_embeddings: true
+    # Estimated params: ~40–50M
+
+  architecture:
+    attention_type: "causal_mqa"    # Multi-Query Attention with causal mask
+    normalization: "rmsnorm"        # RMSNorm (pre-normalization)
+    positional_encoding: "rope"     # Rotary Position Embeddings
+    rope_base: 10000
+    rmsnorm_epsilon: 1.0e-6
+    activation: "gelu"
+    residual_connections: true
+
+  default_config: "prototype"      # Start with prototype
+
+  output_dir: "eval/results/models/"
+

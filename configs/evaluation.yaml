@@ -1,0 +1,58 @@
+# ============================================================
+# evaluation.yaml — Evaluation metrics and protocols
+# ============================================================
+
+evaluation:
+
+  tokenizer_metrics:
+    - fertility_tokens_per_word
+    - chars_per_token
+    - compression_ratio
+    - unknown_token_rate
+    - morphological_boundary_precision
+    - vocabulary_utilization
+
+  language_model_metrics:
+    - validation_perplexity
+    - test_perplexity
+    - cross_entropy
+    - bits_per_character
+    - bits_per_byte
+
+  generation_metrics:
+    - repetition_rate
+    - distinct_1gram
+    - distinct_2gram
+    - length_distribution
+    - morphological_error_rate  # Requires human annotation or validated analyzer
+
+  ablation_experiments:
+    tokenizer_lambda: [0.0, 0.25, 0.50, 0.75, 1.0]
+    vocab_sizes: [2000, 4000, 8000, 12000]
+    model_sizes: ["prototype", "standard"]  # large only if time budget allows
+
+  statistical_analysis:
+    compute_confidence_intervals: true
+    confidence_level: 0.95
+    multiple_seeds: [42, 123, 456]   # Use all 3 for main comparison if compute permits
+    significance_test: "paired_t_test"
+
+  generation_prompts:
+    storytelling:
+      - "በጥንት ዘመን አንድ ንጉስ"
+      - "ትንሽ ልጅቷ በጫካ ውስጥ"
+      - "አንድ አባት ለልጁ"
+      - "ሁለቱ ጓደኞች ጉዞ ጀምሩ"
+      - "ምድሪቱ ሲደርቅ"
+    conversational:
+      - "ሰላም እንደምን አለህ"
+      - "ኢትዮጵያ ስለምን ታወቃለች"
+      - "አማርኛ ስንት ሰዎች ይናገሩታል"
+    descriptive:
+      - "አዲስ አበባ ከተማ"
+      - "የኢትዮጵያ ምግቦች"
+
+  output_dir: "eval/results/"
+  reports_dir: "eval/reports/"
+  save_format: "jsonl"
+

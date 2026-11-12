@@ -1,0 +1,89 @@
+{
+  "timestamp": "2026-11-12T11:10:13.154908",
+  "stages": {
+    "raw_ingested": 180922,
+    "normalized_retained": 180922,
+    "normalized_rejected": 0,
+    "quality_passed": 180551,
+    "quality_rejected": 371,
+    "quality_rejection_reasons": {
+      "excessive_repetition": 42,
+      "low_ethiopic_ratio_0.50": 321,
+      "too_few_words_3": 5,
+      "low_ethiopic_ratio_0.57": 1,
+      "low_ethiopic_ratio_0.53": 1,
+      "low_ethiopic_ratio_0.58": 1
+    },
+    "exact_dedup_removed": 56310,
+    "near_dedup_removed": 3311,
+    "final_corpus_size": 120930
+  },
+  "sources": {
+    "raw_by_source": {
+      "amharic_clean_corpus": 30882,
+      "amharicdc_v3": 93713,
+      "amharichat": 44836,
+      "xlsum_corpus": 11491
+    }
+  },
+  "splits": {
+    "train": {
+      "record_count": 108838,
+      "total_tokens": 4869876,
+      "total_chars": 24942987,
+      "avg_tokens_per_record": 44.7,
+      "avg_chars_per_record": 229.2,
+      "domain_breakdown": {
+        "storytelling_and_narrative": 27477,
+        "dialogue_and_instruction": 81361
+      }
+    },
+    "validation": {
+      "record_count": 6046,
+      "total_tokens": 257094,
+      "total_chars": 1315812,
+      "avg_tokens_per_record": 42.5,
+      "avg_chars_per_record": 217.6,
+      "domain_breakdown": {
+        "storytelling_and_narrative": 1504,
+        "dialogue_and_instruction": 4542
+      }
+    },
+    "test": {
+      "record_count": 6046,
+      "total_tokens": 253576,
+      "total_chars": 1298890,
+      "avg_tokens_per_record": 41.9,
+      "avg_chars_per_record": 214.8,
+      "domain_breakdown": {
+        "storytelling_and_narrative": 1462,
+        "dialogue_and_instruction": 4584
+      }
+    },
+    "diagnostic": {
+      "record_count": 200,
+      "total_tokens": 6400,
+      "total_chars": 32670,
+      "avg_tokens_per_record": 32.0,
+      "avg_chars_per_record": 163.3,
+      "domain_breakdown": {
+        "storytelling_and_narrative": 54,
+        "dialogue_and_instruction": 146
+      }
+    }
+  },
+  "corpus_summary": {
+    "name": "AmharicGenCorpus",
+    "version": "1.0.0",
+    "total_documents": 120930,
+    "total_tokens": 5380546,
+    "total_chars": 27557689,
+    "split_ratio": "90/5/5",
+    "random_seed": 42,
+    "sha256_manifest": {
+      "train": "cbd8a27d7af8d5e3d4c7bb239a717380c22a4b5b05fe859c6aa4aa90b83f6eee",
+      "validation": "5f55980db62b455e36925343b41c60d693367b7a3cbe2829b6dad954ca4a0e35",
+      "test": "db3d1f95bc8f6ef76d95a3ef48b6f2acf65a9b29e44d2c7c28578d5f91f637ea"
+    }
+  }
+}

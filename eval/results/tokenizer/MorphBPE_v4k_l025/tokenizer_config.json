@@ -1,0 +1,14 @@
+{
+  "algorithm": "MorphBPE",
+  "vocab_size": 4000,
+  "boundary_lambda": 0.25,
+  "special_tokens": [
+    "<pad>",
+    "<unk>",
+    "<bos>",
+    "<eos>",
+    "<story_start>",
+    "<story_end>"
+  ],
+  "num_merges": 3442
+}

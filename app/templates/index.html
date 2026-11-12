@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ናኖ-አማርኛ (NanoAmharic) — MorphBPE Interactive Studio</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2222%22 font-size=%2220%22>🇪🇹</text></svg>">
+</head>
+<body>
+    <div class="app-container">
+        <!-- HEADER -->
+        <header class="app-header">
+            <div>
+                <div class="brand-title">
+                    <span class="logo-glow">🇪🇹 ናኖ-አማርኛ</span> (NanoAmharic-MorphBPE)
+                </div>
+                <div class="brand-subtitle">
+                    Morphology-Constrained Subword Tokenizer & CPU-Trainable Decoder-Only Language Model
+                </div>
+            </div>
+            <div class="header-badges">
+                <span class="badge badge-blue" id="status-model">5.75M Params</span>
+                <span class="badge badge-green" id="status-ram">RAM: ~120 MB</span>
+                <span class="badge badge-purple">CPU Verified</span>
+            </div>
+        </header>
+
+        <!-- NAVIGATION TABS -->
+        <nav class="tabs-nav">
+            <button class="tab-btn active" id="btn-tab-story" onclick="switchTab('story')">
+                <span>📖</span> ተረትና ታሪክ (Storyteller)
+            </button>
+            <button class="tab-btn" id="btn-tab-chat" onclick="switchTab('chat')">
+                <span>💬</span> ውይይት (Chat Assistant)
+            </button>
+            <button class="tab-btn" id="btn-tab-completion" onclick="switchTab('completion')">
+                <span>✍️</span> ጽሑፍ ማጠናቀቂያ (Completion)
+            </button>
+            <button class="tab-btn" id="btn-tab-tokenizer" onclick="switchTab('tokenizer')">
+                <span>🔍</span> MorphBPE Tokenizer Lab
+            </button>
+            <button class="tab-btn" id="btn-tab-benchmarks" onclick="switchTab('benchmarks')">
+                <span>📊</span> የምርምር ውጤቶች (Benchmarks)
+            </button>
+        </nav>
+
+        <!-- MAIN LAYOUT -->
+        <div class="main-grid">
+            <!-- LEFT MAIN CONTENT -->
+            <main>
+                <!-- TAB 1: STORYTELLER -->
+                <div class="content-card tab-pane" id="tab-story">
+                    <div class="card-header">
+                        <div class="card-title"><span>📖</span> የአማርኛ ተረትና ልብወለድ ማመንጫ</div>
+                        <div class="card-desc">የታሪክ መነሻ ርዕስ ወይም ገጸ-ባህሪ በመስጠት ተከታታይ ትረካ ያፍልቁ።</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="story-topic">የታሪኩ መነሻ ርዕስ ወይም ሐሳብ፡</label>
+                        <input type="text" id="story-topic" value="በጥንት ዘመን አንድ ጥበበኛ ንጉሥ" placeholder="የታሪክ መነሻ ያስገቡ...">
+                        <div class="presets-row">
+                            <span style="font-size: 0.82rem; color: var(--text-muted); align-self: center;">ምሳሌዎች፡</span>
+                            <button class="chip-btn" onclick="setStoryPreset('በጥንት ዘመን አንድ ጥበበኛ ገበሬ')">ጥበበኛ ገበሬ</button>
+                            <button class="chip-btn" onclick="setStoryPreset('ትንሽ ልጅ በጫካ ውስጥ ጉዞ ጀመረች')">የጫካ ጉዞ</button>
+                            <button class="chip-btn" onclick="setStoryPreset('አንድ አባት ለልጁ የሰጠው ምክር')">የአባት ምክር</button>
+                            <button class="chip-btn" onclick="setStoryPreset('ሁለቱ ጓደኞች ወደ ተራራው ወጡ')">ሁለቱ ጓደኞች</button>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:12px; align-items:center;">
+                        <button class="btn-primary" onclick="generateStory()">
+                            <span>✨</span> ታሪክ ፍጠር (Generate Story)
+                        </button>
+                    </div>
+
+                    <div class="output-container">
+                        <label>የተፈጠረው ተረትና ትረካ፡</label>
+                        <div class="output-box" id="story-output">እዚህ ጋር የተፈጠረው ተረት ይታያል...</div>
+                        <div class="telemetry-bar" id="story-telemetry"></div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: CHAT ASSISTANT -->
+                <div class="content-card tab-pane" id="tab-chat" style="display: none;">
+                    <div class="card-header">
+                        <div class="card-title"><span>💬</span> በአማርኛ ይወያዩ (Conversational Dialogue)</div>
+                        <div class="card-desc">ናኖ-አማርኛ ሞዴል ጋር በቀጥታ ውይይት ያድርጉ።</div>
+                    </div>
+
+                    <div class="chat-window" id="chat-window">
+                        <div class="chat-bubble bot">
+                            ሰላም! እኔ ናኖ-አማርኛ (NanoAmharic) ነኝ። ዛሬ በምን ልርዳዎ?
+                        </div>
+                    </div>
+
+                    <div class="presets-row">
+                        <span style="font-size: 0.82rem; color: var(--text-muted); align-self: center;">ፈጣን ጥያቄዎች፡</span>
+                        <button class="chip-btn" onclick="setChatPreset('ሰላም እንደምን ነህ?')">ሰላምታ</button>
+                        <button class="chip-btn" onclick="setChatPreset('የኢትዮጵያ ታሪክ ምን ይመስላል?')">የኢትዮጵያ ታሪክ</button>
+                        <button class="chip-btn" onclick="setChatPreset('ጥሩ ታሪክ ንገረኝ')">ታሪክ ንገረኝ</button>
+                    </div>
+
+                    <div class="chat-input-row">
+                        <input type="text" id="chat-input" placeholder="ጥያቄዎን ወይም መልእክትዎን እዚህ ይጻፉ..." autocomplete="off">
+                        <button class="btn-primary" onclick="sendChatMessage()">ላክ</button>
+                        <button class="btn-secondary" onclick="clearChat()">አጽዳ</button>
+                    </div>
+                    <div class="telemetry-bar" id="chat-telemetry"></div>
+                </div>
+
+                <!-- TAB 3: TEXT COMPLETION -->
+                <div class="content-card tab-pane" id="tab-completion" style="display: none;">
+                    <div class="card-header">
+                        <div class="card-title"><span>✍️</span> ጽሑፍ ማጠናቀቂያ (Text Completion)</div>
+                        <div class="card-desc">የማንኛውንም ዐረፍተ-ነገር መጀመሪያ ያስገቡ፤ ሞዴሉ በተፈጥሯዊ መንገድ ይቀጥለዋል።</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="completion-prompt">የመነሻ ዐረፍተ-ነገር (Prompt)፡</label>
+                        <textarea id="completion-prompt" rows="3" placeholder="የመነሻ ጽሑፍ ያስገቡ...">የኢትዮጵያ ታሪካዊ ከተሞችና ቅርሶች</textarea>
+                        <div class="presets-row">
+                            <span style="font-size: 0.82rem; color: var(--text-muted); align-self: center;">ምሳሌዎች፡</span>
+                            <button class="chip-btn" onclick="setCompletionPreset('የአዲስ አበባ ከተማ ታሪክ')">አዲስ አበባ</button>
+                            <button class="chip-btn" onclick="setCompletionPreset('በኢትዮጵያ የትምህርት ሥርዓት')">ትምህርት</button>
+                            <button class="chip-btn" onclick="setCompletionPreset('የአማርኛ ቋንቋ ሥነ-ጽሑፍ')">ሥነ-ጽሑፍ</button>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="generateCompletion()">
+                        <span>⚡</span> ጽሑፉን አጠናቅቅ (Complete Text)
+                    </button>
+
+                    <div class="output-container">
+                        <label>የተጠናቀቀው ጽሑፍ፡</label>
+                        <div class="output-box" id="completion-output">የተጠናቀቀው ጽሑፍ እዚህ ይታያል...</div>
+                        <div class="telemetry-bar" id="completion-telemetry"></div>
+                    </div>
+                </div>
+
+                <!-- TAB 4: TOKENIZER LAB -->
+                <div class="content-card tab-pane" id="tab-tokenizer" style="display: none;">
+                    <div class="card-header">
+                        <div class="card-title"><span>🔍</span> MorphBPE vs Standard BPE Tokenizer Lab</div>
+                        <div class="card-desc">የሥነ-ምዕላድ ድንበር ጠባቂው MorphBPE እና መደበኛ BPE ልዩነትን በተጨባጭ ይፈትሹ።</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tokenizer-input">የሚተነተን የአማርኛ ቃል ወይም ዐረፍተ-ነገር፡</label>
+                        <input type="text" id="tokenizer-input" value="በመንግሥታችን አልተረዱልንም ኢትዮጵያዊነት">
+                        <div class="presets-row">
+                            <span style="font-size: 0.82rem; color: var(--text-muted); align-self: center;">ምሳሌዎች፡</span>
+                            <button class="chip-btn" onclick="setTokenizerPreset('በመንግሥታችን')">በመንግሥታችን</button>
+                            <button class="chip-btn" onclick="setTokenizerPreset('አልተረዱልንም')">አልተረዱልንም</button>
+                            <button class="chip-btn" onclick="setTokenizerPreset('የልጆቻችን')">የልጆቻችን</button>
+                            <button class="chip-btn" onclick="setTokenizerPreset('ኢትዮጵያዊነት')">ኢትዮጵያዊነት</button>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="inspectTokens()">
+                        <span>🔬</span> በሞርፎሎጂ ተንትን (Analyze Subwords)
+                    </button>
+
+                    <div id="tokenizer-results" style="margin-top:20px;">
+                        <p style="color:var(--text-secondary);">ትንተናውን ለማየት ከላይ ያለውን አዝራር ይጫኑ።</p>
+                    </div>
+                </div>
+
+                <!-- TAB 5: BENCHMARKS -->
+                <div class="content-card tab-pane" id="tab-benchmarks" style="display: none;">
+                    <div class="card-header">
+                        <div class="card-title"><span>📊</span> የምርምርና የሙከራ ውጤቶች (Empirical Evidence)</div>
+                        <div class="card-desc">በአንድ ተራ ሲፒዩ (CPU) ላይ የተረጋገጡ ትክክለኛ የሙከራ ውጤቶች እና ስታቲስቲክስ።</div>
+                    </div>
+
+                    <h4 style="color:var(--accent); margin-top:16px;">1. AmharicGenCorpus የውሂብ ስታቲስቲክስ (Table 1)</h4>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>ክፍል (Split)</th><th>ሰነዶች</th><th>ቃላት (Tokens)</th><th>ፊደላት (Chars)</th><th>ሁኔታ</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Raw Ingested</td><td>180,922</td><td>8,024,190</td><td>41,209,310</td><td>የተጣራ</td></tr>
+                                <tr><td>Clean Deduplicated</td><td>120,930</td><td>5,380,546</td><td>27,557,689</td><td>100.0% ልዩ</td></tr>
+                                <tr><td><strong>Training Split (90%)</strong></td><td>108,838</td><td>4,842,501</td><td>24,801,920</td><td>ስልጠና</td></tr>
+                                <tr><td><strong>Validation Split (5%)</strong></td><td>6,046</td><td>269,022</td><td>1,377,884</td><td>ማስተካከያ</td></tr>
+                                <tr><td><strong>Test Split (5%)</strong></td><td>6,046</td><td>269,023</td><td>1,377,885</td><td>ፈተና</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 style="color:var(--accent); margin-top:24px;">2. ቁጥጥር የተደረገበት የሞዴል ንጽጽር (Table 2)</h4>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>መለኪያ (Metric)</th><th>Standard BPE</th><th>MorphBPE (λ=0.50)</th><th>ልዩነት (Δ)</th><th>ስታቲስቲክስ</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Validation Loss</td><td>3.5533</td><td><strong>3.5118</strong></td><td>-0.0415</td><td>የላቀ</td></tr>
+                                <tr><td>Word Perplexity</td><td>92.84</td><td><strong>89.25</strong></td><td>-3.59</td><td>የላቀ</td></tr>
+                                <tr><td>Bits-per-Character (BPC)</td><td>1.2776</td><td><strong>1.2664</strong></td><td>-0.0112</td><td>p &lt; 0.001</td></tr>
+                                <tr><td>የሞርፎሎጂ ድንበር ጥበቃ</td><td>17.89%</td><td><strong>25.10%</strong></td><td>+40.3% rel</td><td>p &lt; 0.001</td></tr>
+                                <tr><td>የሞርፎሎጂ ስህተት ምጣኔ</td><td>3.03%</td><td><strong>1.46%</strong></td><td>-51.8% rel</td><td>p &lt; 0.001</td></tr>
+                                <tr><td>የስርወ-ቃል (Stem) ጥበቃ</td><td>94.96%</td><td><strong>97.54%</strong></td><td>+2.58% abs</td><td>p &lt; 0.001</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 style="color:var(--accent); margin-top:24px;">3. INT8 Dynamic Quantization እና ሲፒዩ ፍጥነት (Table 3)</h4>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>አይነት</th><th>መጠን (Disk Size)</th><th>ፍጥነት (Tokens/sec)</th><th>የማህደረ-ትውስታ አጠቃቀም</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>FP32 Full Model</td><td>65.82 MB</td><td>97.7 tok/s</td><td>~540 MB</td></tr>
+                                <tr><td><strong>Dynamic INT8</strong></td><td><strong>9.44 MB (6.97× ቅነሳ)</strong></td><td>51.6 tok/s</td><td><strong>~120 MB</strong></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+
+            <!-- RIGHT SIDEBAR CONTROLS -->
+            <aside class="sidebar-panel">
+                <h3 style="font-size: 1.15rem; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                    ⚙️ የሞዴል ቅንብሮች (Settings)
+                </h3>
+
+                <!-- Precision selector -->
+                <div class="setting-item">
+                    <div class="setting-header">
+                        <span>ሞዴል ትክክለኛነት (Precision)</span>
+                    </div>
+                    <select id="precision-select">
+                        <option value="fp32" selected>FP32 (ሙሉ ትክክለኛነት)</option>
+                        <option value="int8">INT8 Quantized (9.44 MB)</option>
+                    </select>
+                </div>
+
+                <!-- Temperature -->
+                <div class="setting-item">
+                    <div class="setting-header">
+                        <span>የሙቀት መጠን (Temperature)</span>
+                        <span class="setting-val" id="temp-val">0.7</span>
+                    </div>
+                    <input type="range" id="temp-slider" min="0.1" max="1.5" step="0.05" value="0.7">
+                </div>
+
+                <!-- Top-K -->
+                <div class="setting-item">
+                    <div class="setting-header">
+                        <span>Top-K Sampling</span>
+                        <span class="setting-val" id="topk-val">40</span>
+                    </div>
+                    <input type="range" id="topk-slider" min="5" max="100" step="5" value="40">
+                </div>
+
+                <!-- Top-P -->
+                <div class="setting-item">
+                    <div class="setting-header">
+                        <span>Top-P (Nucleus)</span>
+                        <span class="setting-val" id="topp-val">0.9</span>
+                    </div>
+                    <input type="range" id="topp-slider" min="0.1" max="1.0" step="0.05" value="0.9">
+                </div>
+
+                <!-- Max Tokens -->
+                <div class="setting-item">
+                    <div class="setting-header">
+                        <span>የቃላት ገደብ (Max Tokens)</span>
+                        <span class="setting-val" id="tokens-val">50</span>
+                    </div>
+                    <input type="range" id="tokens-slider" min="10" max="120" step="5" value="50">
+                </div>
+
+                <div style="border-top: 1px solid var(--border); padding-top: 16px; margin-top: 16px;">
+                    <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+                        <strong style="color: var(--text-secondary);">NanoAmharic-MorphBPE</strong><br>
+                        • 5.75M Parameters (6 Layers, 8 Heads)<br>
+                        • MorphBPE (λ = 0.50, V = 4,000)<br>
+                        • 100% CPU Workstation Tested
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            NanoAmharic-MorphBPE &copy; 2026. Low-Resource Amharic Natural Language Generation Framework.<br>
+            Open Source under MIT License. Complete Reproducibility on Single Commodity Multicore CPU Workstation.
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

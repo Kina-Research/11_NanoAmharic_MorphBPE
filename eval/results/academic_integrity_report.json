@@ -1,0 +1,169 @@
+{
+  "timestamp": "2026-11-12 15:58:07",
+  "manuscript_path": "D:\\AMUPHD2015\\Papers\\14nanoamharicmorphbpe\\paper\\manuscript_draft.md",
+  "bibtex_path": "D:\\AMUPHD2015\\Papers\\14nanoamharicmorphbpe\\paper\\references.bib",
+  "citation_verification": {
+    "total_citations": 8,
+    "valid_citations_count": 8,
+    "invalid_citations_count": 0,
+    "valid_keys": [
+      "gashaw2020hornmorpho",
+      "sennrich2016subword",
+      "abate2020amharic",
+      "yimam2021afroxlmr",
+      "su2024roformer",
+      "zhang2019rmsnorm",
+      "press2017tying",
+      "jacob2018quantization"
+    ],
+    "invalid_keys": [],
+    "integrity_ratio": 1.0,
+    "all_citations_verified": true
+  },
+  "integrity_audit": {
+    "total_audit_rules": 27,
+    "verified_claims_count": 27,
+    "missing_claims_count": 0,
+    "flags_detected": [],
+    "integrity_score": 1.0,
+    "audit_passed": true,
+    "verified_claims": [
+      {
+        "claim_key": "clean_documents",
+        "expected_value": "120,930",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "corpus_tokens",
+        "expected_value": "5,380,546",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "corpus_chars",
+        "expected_value": "27,557,689",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "exact_duplicates",
+        "expected_value": "56,310",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "param_count",
+        "expected_value": "5.75M",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "baseline_bpe_fertility",
+        "expected_value": "1.575",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "morphbpe_fertility",
+        "expected_value": "1.585",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "baseline_mbc",
+        "expected_value": "17.89%",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "morphbpe_mbc",
+        "expected_value": "25.10%",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "mbc_boost",
+        "expected_value": "40.3%",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "baseline_val_loss",
+        "expected_value": "3.5533",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "morphbpe_val_loss",
+        "expected_value": "3.5118",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "baseline_val_ppl",
+        "expected_value": "34.93",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "morphbpe_val_ppl",
+        "expected_value": "33.51",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "training_time",
+        "expected_value": "29.1 minutes",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "baseline_bpc",
+        "expected_value": "1.2776",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "morphbpe_bpc",
+        "expected_value": "1.2664",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "baseline_word_ppl",
+        "expected_value": "92.84",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "morphbpe_word_ppl",
+        "expected_value": "89.25",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "baseline_mer",
+        "expected_value": "3.03%",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "morphbpe_mer",
+        "expected_value": "1.46%",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "mer_reduction",
+        "expected_value": "51.82%",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "morphbpe_stem_preservation",
+        "expected_value": "97.54%",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "fp32_size",
+        "expected_value": "65.82 MB",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "int8_size",
+        "expected_value": "9.44 MB",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "compression_ratio",
+        "expected_value": "6.97x",
+        "status": "VERIFIED_PRESENT"
+      },
+      {
+        "claim_key": "disk_savings",
+        "expected_value": "85.66%",
+        "status": "VERIFIED_PRESENT"
+      }
+    ]
+  },
+  "overall_status": "APPROVED"
+}

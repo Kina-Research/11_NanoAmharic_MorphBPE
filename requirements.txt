@@ -1,0 +1,60 @@
+# ============================================================
+# requirements.txt — NanoAmharic-MorphBPE
+# Full dependency list (CPU-only execution enforced)
+# Pin versions that are verified against Python 3.13.0 / Windows 11
+# Generated: 2026-11-12  Phase 1
+# ============================================================
+
+# --- Core ML / PyTorch (CPU ONLY — no CUDA wheel) ---
+torch==2.15.0          # CPU-only build already installed; +cpu suffix variant
+numpy==2.2.0
+
+# --- HuggingFace Ecosystem ---
+transformers==4.57.0
+datasets==2.21.0
+tokenizers==0.22.1
+sentencepiece==0.2.2
+huggingface-hub>=0.25.0
+
+# --- ONNX Runtime CPU ---
+onnxruntime>=1.19.0    # CPU provider only
+optimum>=1.23.0        # For ONNX export + quantization
+
+# --- Data / Utilities ---
+requests==2.32.5
+tqdm==4.67.1
+regex==2.5.162
+psutil==7.1.0
+pyyaml>=6.0
+ujson>=5.9.0
+
+# --- Deduplication ---
+datasketch>=1.6.5      # MinHash — MIT License
+# copydetect>=0.3.0    # Winnowing fingerprinting — MIT License (install separately; needs numpy<2)
+
+# --- NLP / Text Analysis ---
+spacy>=3.7.5
+textstat>=0.7.3
+
+# --- Writing Assistant: Grammar ---
+language-tool-python>=2.8  # GPLv3; requires Java 17+
+                            # Falls back to public API if no Java present
+
+# --- Writing Assistant: Embedding-based Similarity ---
+sentence-transformers>=3.3.0  # For multilingual-e5-small ONNX backend
+
+# --- Application ---
+streamlit>=1.40.0
+Pillow>=10.4.0
+
+# --- Experiment Tracking / Config ---
+jsonlines>=4.0.0
+
+# --- Testing ---
+pytest>=8.3.0
+pytest-cov>=5.0.0
+
+# --- Development ---
+black>=24.0
+isort>=5.13.0
+

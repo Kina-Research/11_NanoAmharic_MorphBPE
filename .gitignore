@@ -1,0 +1,51 @@
+# Git ignore for NanoAmharic-MorphBPE
+
+# Python & Caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+.cache/
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Raw and intermediate data staging (processed splits are tracked in data/processed/)
+data/raw/
+data/intermediate/
+data/reference_corpus/
+
+# Internal research manuscript and editorial reports (excluded from implementation release)
+paper/
+eval/reports/
+
+# Cache directories and temporary weights
+eval/results/checkpoints/cache/
+*.ckpt
+*.safetensors
+*.log
+eval/results/training_logs/
+*.out
+
+# IDE & Editor artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini

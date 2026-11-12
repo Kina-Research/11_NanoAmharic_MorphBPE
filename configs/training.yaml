@@ -1,0 +1,78 @@
+# ============================================================
+# training.yaml — NanoAmharic pretraining configuration
+# ============================================================
+
+training:
+  # Optimizer
+  optimizer: "AdamW"
+  learning_rate: 3.0e-4
+  weight_decay: 0.01
+  beta1: 0.9
+  beta2: 0.95
+  epsilon: 1.0e-8
+  gradient_clip_norm: 1.0
+
+  # Schedule
+  scheduler: "cosine_with_warmup"
+  warmup_steps: 200
+  min_lr_ratio: 0.1              # min_lr = lr * min_lr_ratio
+
+  # Batch and sequence
+  batch_size: 4                  # CPU-safe starting point; reduce if OOM
+  gradient_accumulation_steps: 8  # Effective batch = 32
+  sequence_length: 512
+
+  # Epochs and steps
+  max_epochs: 20
+  max_steps: null                # null = run full epochs
+  eval_interval_steps: 500
+  save_interval_steps: 1000
+
+  # Reproducibility
+  seed: 42
+  deterministic: true
+
+  # CPU optimizations
+  num_dataloader_workers: 2
+  pin_memory: false              # CPU only
+  compile_model: false           # torch.compile — disable on Windows CPU for stability
+  dtype: "float32"               # bfloat16 not reliably supported on all CPUs without AMX
+
+  # Memory management
+  gradient_checkpointing: false  # Enable if OOM during prototype testing
+
+  # Checkpointing
+  checkpoint_dir: "eval/results/checkpoints/"
+  keep_last_n_checkpoints: 3
+
+  # Early stopping
+  early_stopping: true
+  early_stopping_patience: 5    # In eval intervals
+
+  # Hardware budget
+  estimated_tokens_per_second: 1000   # Rough baseline; measure actual value
+  target_training_tokens: 50_000_000  # 50M tokens per experiment
+
+  # Experiment IDs for paired comparison
+  experiments:
+    baseline_bpe:
+      tokenizer: "standard_bpe"
+      config: "prototype"
+      seed: 42
+    morphbpe_l025:
+      tokenizer: "morphbpe_lambda0.25"
+      config: "prototype"
+      seed: 42
+    morphbpe_l050:
+      tokenizer: "morphbpe_lambda0.50"
+      config: "prototype"
+      seed: 42
+    morphbpe_l075:
+      tokenizer: "morphbpe_lambda0.75"
+      config: "prototype"
+      seed: 42
+    morphbpe_l100:
+      tokenizer: "morphbpe_lambda1.0"
+      config: "prototype"
+      seed: 42
+
